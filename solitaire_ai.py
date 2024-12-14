@@ -44,27 +44,27 @@ suit_to_index = {suit: idx for idx, suit in enumerate(SUITS)}
 
 # AI Training Settings
 MAX_EPISODES = 1000     # More training episodes
-MAX_MOVES_PER_EPISODE = 500  # Maximum moves allowed per game before forcing end
-BATCH_SIZE = 4096          # Larger batch size for better learning
-MAX_CONSECUTIVE_INVALID_MOVES = 40  # Stop game if this many invalid moves in a row
-EXPLORATION_RATE = 0.05     # 5% chance to make random move instead of using model
-INITIAL_EPSILON = 1.0     # Start fully exploratory
-EPSILON_MIN = 0.05        # Allow more exploration (up from 0.01)
-EPSILON_DECAY = 0.997     # Slower decay for better exploration
-LEARNING_RATE = 0.001    # Smaller learning rate for more stable learning
+MAX_MOVES_PER_EPISODE = 250  # Maximum moves allowed per game before forcing end
+BATCH_SIZE = 256          # Larger batch size for better learning
+MAX_CONSECUTIVE_INVALID_MOVES = 50  # Stop game if this many invalid moves in a row
+EXPLORATION_RATE = 0.15     # 5% chance to make random move instead of using model
+INITIAL_EPSILON = 0.999     # Start fully exploratory
+EPSILON_MIN = 0.01        # Allow more exploration (up from 0.01)
+EPSILON_DECAY = 0.995     # Slower decay for better exploration
+LEARNING_RATE = 0.005    # Smaller learning rate for more stable learning
 GAMMA = 0.95              # Discount rate for future rewards
-MEMORY_SIZE = 100000       # Larger memory for better experience replay
+MEMORY_SIZE = 30000       # Larger memory for better experience replay
 
 # Display Settings
-DISPLAY_FREQUENCY = 2      # Show gameplay every N episodes
-STATS_FREQUENCY = 1        # Show statistics every N episodes
-FRAME_DELAY = 10            # Milliseconds to wait between frames
+DISPLAY_FREQUENCY = 10     # Show gameplay every N episodes
+STATS_FREQUENCY = 2        # Show statistics every N episodes
+FRAME_DELAY = 5            # Milliseconds to wait between frames
 EPISODE_DELAY = 0.001       # Seconds to wait between episodes
 
 # Neural Network Settings
-NN_LAYER_1_SIZE = 1024     # Neurons in first hidden layer
-NN_LAYER_2_SIZE = 512     # Neurons in second hidden layer
-NN_LAYER_3_SIZE = 256     # New layer
+NN_LAYER_1_SIZE = 256     # Neurons in first hidden layer
+NN_LAYER_2_SIZE = 128     # Neurons in second hidden layer
+NN_LAYER_3_SIZE = 64     # New layer
 CARDS_PER_TABLEAU = 13    # Maximum cards per tableau pile
 TABLEAU_PILES = 7         # Number of tableau piles
 VALUES_PER_CARD = 2       # Each card encoded as (value, suit)
@@ -92,20 +92,20 @@ ACTION_SIZE = 50          # Maximum number of possible moves to choose from
 # 4. Make basic moves when nothing better is available (1 point)
 # 5. Avoid repetitive moves (-5 points)
 REWARD_FOUNDATION_MOVE = 15    # Moving card to foundation (Ace piles)
-REWARD_REVEAL_CARD = 100        # Revealing a face-down card
+REWARD_REVEAL_CARD = 200        # Revealing a face-down card
 REWARD_PRODUCTIVE_TABLEAU = 100  # Building useful sequences in tableau
 REWARD_BASIC_MOVE = 1          # Any legal move that doesn't fit above categories
 REWARD_DRAW_CARD = -5          # Drawing new card from stock
 REWARD_CYCLE_PENALTY = -15      # Penalty for moving same card back and forth
 REWARD_LONG_CYCLE_PENALTY = -15 # Penalty for longer sequences of repetitive moves
 REWARD_WIN_BONUS = 10000        # Large bonus for winning the game
-REWARD_MOVE_FROM_WASTE = 50     # Moving card from waste pile to tableau or foundation
+REWARD_MOVE_FROM_WASTE = 150     # Moving card from waste pile to tableau or foundation
 
 # Save/Load Settings
 MODEL_SAVE_PATH = Path("G:/My Drive/solitaire")  # Base path for saving models
 SAVE_FREQUENCY = 150           # Save model every N episodes
-LOAD_EXISTING_MODEL = True    # Whether to load previous model or start fresh
-EPSILON_UPDATE_FREQUENCY = 5   # Update exploration rate every N episodes
+LOAD_EXISTING_MODEL = False    # Whether to load previous model or start fresh
+EPSILON_UPDATE_FREQUENCY = 1   # Update exploration rate every N episodes
 
 # Add to constants section
 MAX_UNPRODUCTIVE_MOVES = 50  # Maximum moves allowed without revealing card or foundation move or draw move
